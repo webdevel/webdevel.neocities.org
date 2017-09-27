@@ -1,0 +1,44 @@
+$obsidian: #000;
+$charcoal: #1c1c1c;
+$soil: #583229;
+$bark: #814c41;
+$moss: #36661e;
+$fern: #689f38;
+$grass: #afb42b;
+$sap: #ffe082;
+$lake: #01579b;
+$sky: #039be5;
+$wood: #795e48;
+$cone: #a17565;
+$stone: #626262;
+$leaf: #6e7419;
+$ash: #949494;
+$snow: #fff;
+
+body {
+  background-color: $obsidian;
+  color: $snow;
+}
+footer p {
+  padding: 0rem 3rem;
+  background-color: $charcoal;
+  color: $stone;
+}
+header h1, {
+  padding: 0rem 3rem;
+}
+header p {
+  padding: 0rem 3.5rem;
+}
+.bg-obsidian {
+  background-color: $obsidian;
+}
+.bg-charcoal {
+  background-color: $charcoal;
+}
+.cl-stone {
+  color: $stone;
+}
+.nav-clear-fixed {
+  margin-bottom: 5rem;
+}
