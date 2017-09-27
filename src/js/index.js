@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root.js';
 require('../css/index.scss');
+require('../img/favicon.png');
 
 ReactDOM.render(<Root />, document.getElementById('root'));
 
