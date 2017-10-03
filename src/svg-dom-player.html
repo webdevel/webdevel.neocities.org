@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <title>SVG DOM Player &mdash; Test Load From Window Multi-Clip</title>
+  <script src="js/svgDomPlayer.js"></script>
+  <script>
+    // Load SVG clips from the window and object element id
+    svgDomPlayer.loadFromWindowElementId(window, "clip01");
+    svgDomPlayer.setLoop(true);
+    svgDomPlayer.setPlay(true);
+  </script>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
+  </head>
+  <body>
+    <h2>SVG DOM Player &mdash; Test Load From Window</h2>
+    <ol>
+      <li>
+        <object id="clip01"
+                type="image/svg+xml"
+                data="img/clip01.svg"
+                width="400"
+                height="300">
+        </object>
+      </li>
+    </ol>
+    <p>This site in no way related to Cartoon Network, Warner Brothers, Turner
+      Entertainment, and anyone else that owns the rights to the copyrighted
+      characters Tom and Jerry.</p>
+  </body>
+</html>

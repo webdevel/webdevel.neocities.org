@@ -6,6 +6,7 @@ import Header from './Header.js';
 class Root extends React.Component {
   constructor(props) {
     super(props);
+    this.main = props.main;
   }
   render() {
     return (
@@ -13,6 +14,7 @@ class Root extends React.Component {
         <Nav />
         <div className="nav-clear-fixed"></div>
         <Header />
+        {this.main}
         <Footer />
       </div>
     );

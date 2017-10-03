@@ -10,17 +10,13 @@ const s = path.sep;
 const targetDir = path.resolve(__dirname, 'web');
 const sourceDir = path.resolve(__dirname, 'src');
 const jsSourceDir = path.resolve(sourceDir,'js');
-const bootstrapDir = path.resolve(`${__dirname}${s}node_modules${s}bootstrap${s}dist`);
-const jqueryDir = path.resolve(`${__dirname}${s}node_modules${s}jquery${s}dist`);
-const popperDir = path.resolve(`${__dirname}${s}node_modules${s}popper.js${s}dist${s}umd`);
+const nodeModDir = path.resolve(`${__dirname}${s}node_modules`);
+const reactDir = path.resolve(`${nodeModDir}${s}react${s}dist`);
+const reactDomDir = path.resolve(`${nodeModDir}${s}react-dom${s}dist`);
+const bootstrapDir = path.resolve(`${nodeModDir}${s}bootstrap${s}dist`);
+const jqueryDir = path.resolve(`${nodeModDir}${s}jquery${s}dist`);
+const popperDir = path.resolve(`${nodeModDir}${s}popper.js${s}dist${s}umd`);
 
-function isExternal(module) {
-  var context = module.context;
-  if (typeof context !== 'string') {
-    return false;
-  }
-  return context.indexOf('node_modules') !== -1;
-}
 module.exports = [
   {
     entry: {
@@ -39,6 +35,8 @@ module.exports = [
     },
     resolve: {
       alias: {
+        'react': path.resolve(`${reactDir}${s}react.min.js`),
+        'react-dom': path.resolve(`${reactDomDir}${s}react-dom.min.js`),
         'jquery': path.resolve(`${jqueryDir}${s}jquery.min.js`),
         'popper': path.resolve(`${popperDir}${s}popper.min.js`),
         'bootstrap': path.resolve(`${bootstrapDir}${s}js${s}bootstrap.min.js`)
@@ -52,7 +50,7 @@ module.exports = [
           loader: 'babel-loader'
         },
         {
-          test: /\.(png|jpg|gif|ico)$/,
+          test: /\.(png|jpg|gif|ico|svg)$/,
           use: [
             {
               loader: 'file-loader',
@@ -73,20 +71,20 @@ module.exports = [
                 {
                   loader: 'css-loader',
                   options: {
-                    sourceMap: true,
+                    sourceMap: false,
                     minimize: true
                   }
                 },
                 {
                   loader: 'postcss-loader',
                   options: {
-                    sourceMap: true
+                    sourceMap: false
                   }
                 },
                 {
                   loader: 'sass-loader',
                   options: {
-                    sourceMap: true
+                    sourceMap: false
                   }
                 }
               ]
@@ -94,6 +92,9 @@ module.exports = [
         },
         {
           test: /\.(woff2?|svg)$/,
+          include: [
+            'fonts'
+          ],
           loader: `url-loader?limit=10000&name=fonts${s}[name].[ext]`
         },
         {
@@ -107,9 +108,10 @@ module.exports = [
         host: 'localhost',
         port: 3000,
         proxy: 'http://localhost:8080',
+        online: true,
         files: [{
           match: [
-            /\.html$/
+            '*.html'
           ],
           fn: function(event, file) {
             if (event === 'change') {
@@ -130,6 +132,48 @@ module.exports = [
         {
           from: `${bootstrapDir}${s}css${s}bootstrap.min.css`,
           to: `css${s}bootstrap.min.css`
+        },
+        {
+          from: `src${s}css${s}sudoku.css`,
+          to: `css${s}`,
+          flatten: true
+        },
+        {
+          from: `src${s}js${s}sudoku.js`,
+          to: `js${s}`,
+          flatten: true
+        },
+        {
+          from: `src${s}js${s}svgDomPlayer.js`,
+          to: `js${s}`,
+          flatten: true
+        },
+        {
+          from: `src${s}sudoku.html`,
+          flatten: true
+        },
+        {
+          from: `src${s}svg-dom-player.html`,
+          flatten: true
+        },
+        {
+          from: `src${s}*.pdf`,
+          flatten: true
+        },
+        {
+          from: `src${s}img${s}*.cur`,
+          to: `img${s}`,
+          flatten: true
+        },
+        {
+          from: `src${s}img${s}*.png`,
+          to: `img${s}`,
+          flatten: true
+        },
+        {
+          from: `src${s}img${s}*.svg`,
+          to: `img${s}`,
+          flatten: true
         }
       ]),
       new webpack.ProvidePlugin({
@@ -174,8 +218,8 @@ module.exports = [
         allChunks: true
       })
     ],
-    watch: true,
-    devtool: 'source-map',
+    watch: false,
+    /*devtool: 'source-map',*/
     devServer: {
       hot: true,
       contentBase: 'web'

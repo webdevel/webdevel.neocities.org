@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root.js';
+import MainIndex from './MainIndex.js';
 require('../css/index.scss');
-require('../img/favicon.png');
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+ReactDOM.render(<Root main={<MainIndex />} />, document.getElementById('root'));
 
 // following code block is for webpack-dev-server hot updates
 if (module.hot) {

@@ -1,0 +1,213 @@
+body{
+  background-color:#000;
+}
+
+tbody,
+div, table,
+button img,
+#board tr td,
+#pallet tr td {
+  padding:0;
+  margin:0;
+}
+
+#panel {
+  width: 434px;
+  margin:0px auto;
+  font-family: verdana,arial,sans-serif;
+  font-weight: bold;
+}
+
+#panel #toolbar {
+  width:108px;
+  height:318px;
+  float:right;
+  margin-top:-316px;
+}
+
+#messages,
+#finished {
+  width:400px;
+  margin:-280px auto;
+  font-weight:normal;
+  background-color:white;
+  position:relative;
+  z-index: 99999;
+  border:1px solid black;
+  display:none;
+}
+
+#messages p,
+#finished p {
+  margin:12px;
+}
+
+#finished h4 {
+  margin:12px;
+  font-size: 12pt;
+}
+
+#messages button,
+#finished button {
+  width:70px;
+  float:right;
+  margin:12px;
+}
+
+#finished button+button {
+  margin-right:0;
+}
+
+#messages tr+tr,
+#finished tr+tr {
+  height:50px;
+  background-color: #f2f2f2;
+}
+
+#messages tr td,
+#finished tr td {
+  border:1px solid #e2e2e2;
+}
+
+#messages tr+tr td,
+#finished tr+tr td {
+  border-top:1px solid white;
+}
+
+#pallet {
+  color: #999;
+  float:left;
+}
+
+#toolbar button {
+  width: 34px;
+  height: 34px;
+  padding:0;
+  margin:0;
+  float:left;
+}
+
+#toolbar button img {
+  border:0;
+  vertical-align: middle;
+}
+
+#toolbar #timer {
+  font-size: 14pt;
+  font-weight: bold;
+  width:102px;
+  color: #888;
+}
+
+#toolbar #levels {
+  font-size: 11pt;
+  /*font-weight: bold;*/
+  width:100px;
+  /*height:32px;*/
+  color: #555;
+  background-color: #f0f0f0;
+  border:1px solid #707070;
+  margin-left:1px;
+  margin-top:1px;
+  text-align: center;
+}
+
+#toolbar #levels option {
+  text-align: left;
+}
+
+#board {
+  background-color: white;
+}
+
+/* box shading */
+#pallet,
+#b3, #b4, #b5,
+#b12, #b13, #b14,
+#b21, #b22, #b23,
+#d27, #d28, #d29,
+#f33, #f34, #f35,
+#d36, #d37, #d38,
+#f42, #f43, #f44,
+#d45, #d46, #d47,
+#f51, #f52, #f53,
+#h57, #h58, #h59,
+#h66, #h67, #h68,
+#h75, #h76, #h77 {
+  background-color: #f0f0f0; /* #ddf */
+}
+
+/* vertical rules
+#b3, #c6, #b12, #c15,
+#b21, #c24, #e30, #f33,
+#e39, #f42, #e48, #f51, #h57,
+#i60, #h66, #i69, #h75, #i78,
+#board tr td:first-child,
+#pallet tr td:first-child {
+  border-left: 1px solid #8af;
+}*/
+
+/* horizontal rules
+#board #r3 td,
+#board #r6 td {
+  border-top: 2px solid #8af;
+}*/
+
+/* cell borders */
+#board tr td {
+  border-top: 1px solid #8af;
+}
+
+#board tr td:first-child {
+  border-left: 1px solid #8af;
+}
+
+#board tr td,
+#pallet tr td {
+  border-right: 1px solid #8af;
+}
+
+#pallet tr td,
+#board tr+tr+tr+tr+tr+tr+tr+tr+tr td {
+  border-bottom: 1px solid #8af;
+}
+
+/* board cell style */
+#board tr td,
+#pallet tr td {
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18pt;
+  float:left;
+  /*background-image: url('/img/boardcell.png');*/
+}
+
+#board tr td a {
+  width: 10px;
+  height: 10px;
+  font-size: 7pt;
+  float: left;
+}
+
+/* pallet cell style */
+#pallet tr td {
+  border:0;
+  width: 34px;
+  height: 34px;
+  background-image: url('/img/cell.png');
+}
+
+#board tr .clue {
+  color:#00a;
+}
+
+#board tr .active {
+  background-color:#dff0d0;
+}
+
+#board tr .mistake {
+  color:#c00;
+  background-color:#ffe7e7;
+}
