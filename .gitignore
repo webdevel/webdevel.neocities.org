@@ -57,3 +57,28 @@ typings/
 # dotenv environment variables file
 .env
 
+# Net beans
+nbproject
+
+# Eclipse
+.project
+.settings
+.buildpath
+
+# Composer
+vendor
+
+# IntelliJ
+.idea
+
+# Lock files
+.~lock.*
+*.lock
+*-lock.json
+
+# Mac Os
+.DS_Store
+._*
+
+# Generated Distribution Files
+web
