@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<title>Sudoku</title>
+<link href="css/sudoku.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">//<![CDATA[
+var SUDOKU_PUZZLES=[
+   "7I84E63A2A2FHGCD9ECD51B98FG4EI3H1GB6HFGBIEADC2AC7F4EH9IC46A72EHE7BIDHF3A6H15C29G4",
+   "H6E2D7A9C9DBA3FHE7CG1IEH4BF5C48A27F9GAIEFCBHD6B87I45C1BH3DGI6AE1IGF8ECD2D5F3B1I7H",
+   "EIB8D3GFA63G2I1E48HD1EGF9CB2FD9A8CE79AEGCDHB63GH6B5AI4GH9CFB4AE45F1H9B73ABC4E7FHI",
+   "CGDEBFHIAE9B718C6D8F1ICD5B723GF9AD58FDEH7BIAC91HC4EB764E6AHI7C2G8I263A4EABCDEGFHI",
+   "B619D587CEC7H6A9DBIDH3G2AEF4E6AHI2C7ABCDEGFHI7H9BCF4A5HGB5I4CFAFI4G1C5BHC156B879D",
+   "24GEFHC91E6ACIBD7H9CH1D7EB6D5F7H9A3BABC4E6GHIG8I2A3F4E3IE6B4HA7H1DIGEB6C67BHCAI54",
+   "ABC4E6GHI4EFGIHBA378IB1CE64CD5A7I8BFH67CBD19EIA2F8E3DG67HE4AI322CAIFGDE8EID8C2FGA",
+   "2CHFGDEI1E6GI8AC4BID15327FH4EO1I8BG3A2CDEGF8I7HI3B6AE4FA28459CGH9EG1CD2F3GDBFIHA5",
+   "3EHK6DGAIBIF1EG8DCADGCHIFB5HBDG3E96AFC5IAH4GBG1IDBFCEHDFC5I2AH79HBFGAE3DEGA8DCBIF" ];
+//]]></script>
+<script src="js/sudoku.js"></script>
+</head>
+<body>
+
+<div><div id="panel"><noscript><p>JavaScript is required. Please enable JavaScript.</p></noscript>
+<table id="board" cellspacing="0">
+<tr id="r0">
+<td id="a0"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="a1"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="a2"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b3"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b4"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b5"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c6"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c7"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c8"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r1">
+<td id="a9"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="a10"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="a11"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b12"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b13"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b14"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c15"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c16"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c17"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r2">
+<td id="a18"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="a19"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="a20"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b21"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b22"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="b23"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c24"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c25"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="c26"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r3">
+<td id="d27"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="d28"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="d29"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e30"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e31"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e32"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f33"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f34"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f35"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r4">
+<td id="d36"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="d37"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="d38"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e39"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e40"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e41"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f42"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f43"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f44"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r5">
+<td id="d45"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="d46"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="d47"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e48"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e49"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="e50"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f51"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f52"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="f53"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r6">
+<td id="g54"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="g55"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="g56"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h57"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h58"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h59"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i60"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i61"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i62"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r7">
+<td id="g63"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="g64"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="g65"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h66"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h67"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h68"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i69"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i70"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i71"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+<tr id="r8">
+<td id="g72"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="g73"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="g74"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h75"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h76"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="h77"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i78"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i79"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td>
+<td id="i80"><a/><a/><a/><a/><a/><a/><a/><a/><a/></td></tr>
+</table>
+<div id="toolbar">
+<table id="pallet" cellspacing="0"><tr><td>1</td><td>2</td><td>3</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td><td>9</td></tr></table>
+<button id="write"><img src="img/pencil.png" alt="pen"/></button>
+<button id="help"><img src="img/help.png" alt="help"/></button>
+<button id="options"><img src="img/options.png" alt="options"/></button>
+<button id="reset"><img src="img/reset.png" alt="reset"/></button>
+<button id="checkmistakes"><img src="img/check.png" alt="checkmistakes"/></button>
+<button id="showmistakes"><img src="img/show.png" alt="showmistakes"/></button>
+<button id="solve"><img src="img/solve.png" alt="solve"/></button>
+<button id="solvecell"><img src="img/solvecell.png" alt="solvecell"/></button>
+<button id="autocandidate"><img src="img/auto.png" alt="autocandidate"/></button>
+<button id="timer"></button>
+<select id="levels">
+<option>Simple</option>
+<option>Easy</option>
+<option>Moderate</option>
+<option>Normal</option>
+<option>Hard</option>
+<option>Difficult</option>
+<option>Advanced</option>
+<option>Expert</option>
+<option>Extreme</option>
+</select>
+</div>
+
+<table id="messages" cellspacing="0">
+<tr><td><p id="msg"></p></td></tr>
+<tr><td><button id="ok">OK</button></td></tr>
+</table>
+
+<table id="finished" cellspacing="0">
+<tr><td>
+<h4>Congratulations</h4><p>You have solved the Sudoku puzzle!</p>
+<h4>Summary</h4><p>Time: <br/>Level: <br/>Points: <br/>Mistakes: </p></td></tr>
+<tr><td><button id="save">Save</button><button id="discard">Discard</button></td></tr>
+</table>
+</div></div>
+
+</body>
+</html>

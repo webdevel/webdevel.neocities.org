@@ -19,16 +19,83 @@ body {
   background-color: $obsidian;
   color: $snow;
 }
-footer p {
-  padding: 0rem 3rem;
+footer {
   background-color: $charcoal;
   color: $stone;
+  padding: 2rem 0;
+  border-top: 1px dotted $soil;
+  align-self: baseline;
 }
-header h1, {
+footer p {
   padding: 0rem 3rem;
+  margin: 0;
 }
-header p {
-  padding: 0rem 3.5rem;
+.dropdown-menu-charcoal {
+  background-color: $charcoal;
+}
+.link-stone, .link-stone:link, .link-stone:active,
+.link-stone:visited {
+  color: $stone;
+}
+.liink-stone:hover {
+  color: $ash;
+}
+.link-ash, .link-ash:link, .link-ash:active,
+.link-ash:visited {
+  color: $ash;
+}
+.link-ash:hover, .link-sky:hover {
+  color: $snow;
+}
+.link-sky, .link-sky:link, .link-sky:active,
+.link-sky:visited {
+  color: $sky;
+}
+.main-nav {
+  border-bottom: 1px dotted $lake;
+}
+header.main-header {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px dotted $moss;
+}
+header.main-header p {
+  color: $ash;
+  font-size: 1.3rem;
+}
+header h1, header h2, header h3,
+header h4, header h5, header h6,
+header p, .pad-vert-3, section p {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  background: url('/img/line.svg') 3rem 100% no-repeat;
+}
+section p {
+  color: $ash;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+section a, section a:link section a:active, section a:visited {
+  color: $ash;
+  border-bottom-width: 0.5px;
+  border-bottom-style: solid;
+}
+section a:hover {
+  color: $snow;
+}
+span.highlight {
+  color: $snow;
+}
+span.tech {
+  color: $sky;
+}
+.footer-icon {
+  width: 3rem;
+  height: 3rem;
 }
 .bg-obsidian {
   background-color: $obsidian;
@@ -39,6 +106,29 @@ header p {
 .cl-stone {
   color: $stone;
 }
+.cl-ash {
+  color: $ash;
+}
 .nav-clear-fixed {
-  margin-bottom: 5rem;
+  margin-bottom: 7rem;
+}
+.pad-0 {
+  padding: 0;
+}
+.navbar-icon {
+  height: 40px;
+  width: 40px;
+  background-size: contain;
+}
+.navbar-link {
+  padding-top: 70px;
+}
+.container-root {
+  padding: 0;
+}
+.img-screen {
+  width: 88%;
+  padding-left: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
 }
