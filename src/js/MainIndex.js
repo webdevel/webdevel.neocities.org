@@ -12,7 +12,9 @@ class MainIndex extends React.Component {
             <header>
               <h2>Welcome Aboard</h2>
               <p>This is a place of learning and sharing. It&apos;s an aggregate
-              of software developer information and products.</p>
+              of software developer information and products. The source code
+              for this website can be found
+              at <a href="https://github.com/webdevel/webdevel.neocities.org" target="_blank">Github</a>.</p>
             </header>
           </section>
           <div className="col-sm"></div>
@@ -63,10 +65,10 @@ class MainIndex extends React.Component {
 						<a className="link-sky" href="http://www.motortrend.com/" target="_blank">Motortrend.com</a>
             </p>
             <p>I collaborated in designing, documenting and implementing an SDK with the web platform team.
-We produced over thirty unit tested, documented, reusable modules enabling faster
-turnout of websites, improved performance and less overall maintenance.
-I actively participated in developing proprietary cloud-based ReSTful web APIs.
-Working closely with web API team, in developing interfaces and troubleshooting.
+              We produced over thirty unit tested, documented, reusable modules enabling faster
+              turnout of websites, improved performance and less overall maintenance.
+              I actively participated in developing proprietary cloud-based ReSTful web APIs
+              while working closely with web API team.
             </p>
             <p>These are just a few of the websites powered by the back-end
               code and APIs I participated in developing.
