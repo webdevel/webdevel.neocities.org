@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+  - 8.5.0
+
+sudo: false
+
+before_install:
+  - sudo apt-get -qq update
+
+install:
+  - npm install
+
+script:
+  - env
+  - npm run build
+
+#  - phantomjs tests/headless.js
+
+# safelist
+branches:
+  only:
+    - feature-add-travis-support
