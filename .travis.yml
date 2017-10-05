@@ -22,7 +22,7 @@ install:
 script:
   - env
   - ls -1 web
-  - node ./tests/travisWebdriverioTest.js
+  - node ./scripts/travisWebdriverioTest.js
 
 branches:
   only:

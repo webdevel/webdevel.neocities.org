@@ -13,6 +13,8 @@ client = webdriverio.remote({
         platform: 'Windows 10',
         tags: ['tests'],
         name: 'Travis-CI Test',
+        /*tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,*/
+        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
 
         // If using Open Sauce (https://saucelabs.com/opensauce/),
         // capabilities must be tagged as "public" for the jobs's status
@@ -24,9 +26,10 @@ client = webdriverio.remote({
     },
     host: 'ondemand.saucelabs.com',
     port: 80,
-    user: 'webdevel',
+    user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
-    tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+    /*tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,*/
+    /*'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,*/
     logLevel: 'verbose'
 }).init();
 

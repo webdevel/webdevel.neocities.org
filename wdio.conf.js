@@ -1,15 +1,6 @@
 exports.config = {
 
     //
-    // =================
-    // Service Providers
-    // =================
-    // WebdriverIO supports Sauce Labs, Browserstack, and Testing Bot (other cloud providers
-    // should work too though). These services define specific user and key (or access key)
-    // values you need to put in here in order to connect to these services.
-    //
-    user: 'webdevel',
-    //
     // ==================
     // Specify Test Files
     // ==================
@@ -116,6 +107,21 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     // services: [],//
+    services: ['sauce'],
+    //
+    // =================
+    // Service Providers
+    // =================
+    // WebdriverIO supports Sauce Labs, Browserstack, and Testing Bot (other cloud providers
+    // should work too though). These services define specific user and key (or access key)
+    // values you need to put in here in order to connect to these services.
+    //
+    user: process.env.SAUCE_USERNAME,
+    key: process.env.SAUCE_ACCESS_KEY,
+    sauceConnect: true,
+    sauceConnectOpts: {
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER
+    },
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
