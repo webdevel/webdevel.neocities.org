@@ -14,8 +14,8 @@ install:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
   - npm run build
-  - npm run live
-  - sleep 7 # give server time to start
+  - npm run live &
+  - sleep 5 # give server time to start
 
 #before_script:
 
