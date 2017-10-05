@@ -34,7 +34,7 @@ client
     .url('http://127.0.0.1:8080')
     .pause(1000)
     .getTitle().then((title) => {
-        console.log(title);
+        console.log('TITLE '+title);
     })
     .end()
     .catch((e) => console.log(e));

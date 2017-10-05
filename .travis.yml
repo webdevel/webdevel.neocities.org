@@ -10,14 +10,14 @@ before_install:
 
 install:
   - npm install
-
-before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
   - npm run build
-  - npm run live &
+  - npm run live
   - sleep 7 # give server time to start
+
+#before_script:
 
 script:
   - env
