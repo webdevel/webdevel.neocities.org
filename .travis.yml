@@ -21,12 +21,15 @@ install:
 
 script:
   - env
-  - ls -1 web
-  - node ./scripts/travisWebdriverioTest.js
+  - ls -l web
+  - "npm run test:wdio"
 
 branches:
   only:
-    - feature-add-travis-support
+    - /^feature*$/
+    - develop
+    - /^hotfix*$/
+    - master
 
 addons:
   sauce_connect:
