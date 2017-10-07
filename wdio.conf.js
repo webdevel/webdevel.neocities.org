@@ -10,7 +10,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/wdio/*[sS]pec.js'
+        './test/browsers/*[sS]pec.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -161,7 +161,9 @@ exports.config = {
     //
     mochaOpts: {
         ui: 'bdd',
-        timeout: 180000
+        timeout: 180000,
+        reporter: 'mocha-lcov-reporter',
+        require: 'babel-register'
     },
 
     //

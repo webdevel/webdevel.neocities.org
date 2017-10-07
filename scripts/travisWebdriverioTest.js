@@ -1,8 +1,9 @@
 /**
  * How to run this script
- * export SAUCE_USERNAME="username"
- * export SAUCE_ACCESS_KEY="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
- * node ./tests/test.js
+ * export SAUCE_USERNAME=username
+ * export SAUCE_ACCESS_KEY=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ * export TRAVIS_JOB_NUMBER=0.1
+ * node ./scripts/test.js
 */
 var webdriverio = require('webdriverio');
 
