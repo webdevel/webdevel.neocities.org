@@ -1,0 +1,45 @@
+language: node_js
+
+node_js:
+- 8.5.0
+
+sudo: false
+
+before_install:
+- sudo apt-get -qq update
+
+install:
+- npm install
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+- npm run build
+- npm run live &
+- sleep 5
+
+script:
+- env
+- ls -l web
+- npm run test-browsers
+- npm run test
+
+branches:
+  only:
+  - /^feature.*$/
+  - /^bugfix.*$/
+  - develop
+  - /^hotfix.*$/
+  - master
+
+addons:
+  sauce_connect:
+    username: webdevel
+  jwt:
+    secure: SWs3TjOO7qNEOQJGXP629Qh+rcHW2YX6602mdqy1+sqCdS4jmns2cliHokU66kA5VLjjV9Ccv6A0EclTekcuoKvq2GWKETGmTT1nkRlMumVK8vkM44b3EzHExwUPbieDS0ZbIxoNPloslNxKX7deEWNw3UdsQZEMKpM9LWbNKCVU2OVLsp3Dcn3wvooCsXjSkT4QrOb4uSohlpB5av8mohm80uDEhv62sqzK+NzaieNoUAJoiHaKR8eFv7SzNQemzaxhVcRMf2+LP9KB7fadp7JT2yv7IHI/12Hy01PlEYIzQldqzaZwb1b9ciy12RydaXDIf1dlrWs3yCphrtp5dyLA8u+udvMoU0D9ybpjveM/Q4YzfZh5zgyeUSZVJzMr1+LzcymG/Vl3DEkw4A5GPoR0/EnkQFdWmLoXD2s9Cnf5c+1r7M75iEldRjZVxvqFgzrqf6V9eLm+wh2nW7vMxlktNVu8P4PJzqWePvJIcwqEtlQM4YoYNwGcvRl+fhe/Z6/xFSFYXpKs5sYEZsWyi1/CdgXVrPnY7oIzz9U2usOr1tD4FXK+mhOgaJsR++1f4Fx8VqD4RAUPFusFNSA2nkX31noMc2IBHTM+oUMN6VyLfKUPB7vDFMUwW9ZL1lJcVTvMy5YLoEFLQuurSSf5zJDobZaYZh63jfUnYrz9/XI=
+
+env:
+  global:
+    secure: b6lXS1vaqzGjWvHPx5Mi99i7EvGfCBM8R1oN+bMsr4Pu5jULUafKS+t+HeCcO+cLTtOoPFe3+77gb3Yh3RbsXzFuwRSm7J9TYssm8ppDhaJM6Y1GIt4Un42zImeZiBYjBlaXn6E4ZGMjlW2dr7MLSMHBp0E+YM4MvY93sIbcttfFnraigjjz19XhKsgitQM+R+UrBPmOg06Im9fhha3ukUvsvt3Mll+XkhExvf0nQyrVIXeWyc4oAs9A7WP+Smql5Gk/r76qRTWuZHfVHCZunUnWvgippJ0JCQT6EVELx4xr+PgazIWVv+OECw/BUjiDNo/2NqlQtvofgV0PdP1YiVgI0onS89Gl/FzTljOymyxY7S/MvsYZla06+fqi5kFCS/njMm1SgefAL3YRZ0Q5DlNqVILxS5apTnxy1EwrlYQyrNhSJo/b6TrzxMNSvXEOXmOBa9dYCwuKPKMM75AexbQxfkb+oNqMqmhLrpDTn58joNeSDD2LqpnFXo13Nnw/XEk1KR4NkX7KoOSk3/+2926+doSTy1S0K99JtL3T3okPVWwg+4ANcJL3zj+FMtntxmfkaLXQJRfu1dDlcXV/5aCnxJWs+wnDyPTfOYzXRGyILiNVUkJkuWYSenNva8n7hHYcXn0GwESbX5edJuDNgbsoHxJNrd5rxKdiCRZqO8Q=
+
+after_success:
+- npm run coverage

@@ -2,5 +2,16 @@
   "presets": [
     "env",
     "react"
-  ]
+  ],
+  "plugins": [
+    "transform-runtime",
+    "add-module-exports"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
 }
