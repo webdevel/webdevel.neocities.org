@@ -6,7 +6,9 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "jquery": "^3.2.1",
-    "popper.js": "^1.12.5"
+    "popper.js": "^1.12.5",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -46,9 +48,7 @@
     "phantomjs-prebuilt": "^2.1.15",
     "postcss-loader": "^2.0.6",
     "raw-loader": "^0.5.1",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2",
-    "react-test-renderer": "^15.6.2",
+    "react-test-renderer": "^16.0.0",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "sauce-connect-launcher": "^1.2.2",
