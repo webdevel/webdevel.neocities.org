@@ -11,8 +11,8 @@ const targetDir = path.resolve(__dirname, 'web');
 const sourceDir = path.resolve(__dirname, 'src');
 const jsSourceDir = path.resolve(sourceDir,'js');
 const nodeModDir = path.resolve(`${__dirname}${s}node_modules`);
-const reactDir = path.resolve(`${nodeModDir}${s}react${s}dist`);
-const reactDomDir = path.resolve(`${nodeModDir}${s}react-dom${s}dist`);
+const reactDir = path.resolve(`${nodeModDir}${s}react${s}umd`);
+const reactDomDir = path.resolve(`${nodeModDir}${s}react-dom${s}umd`);
 const bootstrapDir = path.resolve(`${nodeModDir}${s}bootstrap${s}dist`);
 const jqueryDir = path.resolve(`${nodeModDir}${s}jquery${s}dist`);
 const popperDir = path.resolve(`${nodeModDir}${s}popper.js${s}dist${s}umd`);
@@ -35,8 +35,8 @@ module.exports = [
     },
     resolve: {
       alias: {
-        'react': path.resolve(`${reactDir}${s}react.min.js`),
-        'react-dom': path.resolve(`${reactDomDir}${s}react-dom.min.js`),
+        'react': path.resolve(`${reactDir}${s}react.production.min.js`),
+        'react-dom': path.resolve(`${reactDomDir}${s}react-dom.production.min.js`),
         'jquery': path.resolve(`${jqueryDir}${s}jquery.min.js`),
         'popper': path.resolve(`${popperDir}${s}popper.min.js`),
         'bootstrap': path.resolve(`${bootstrapDir}${s}js${s}bootstrap.min.js`)
