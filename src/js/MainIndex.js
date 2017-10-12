@@ -44,7 +44,7 @@ class MainIndex extends React.Component {
               with <span className="tech">Ubuntu Server</span> or another <span className="highlight">Linux</span> distribution.</p>
               <p>I think life is a continuous cycle of learning, adapting,
               applying and sharing. From learning to sharing, I love finding
-              improved ways of developing usefull software as part of a team or
+              improved ways of developing useful software as part of a team or
               independently. </p>
               <p>I&apos;m a practitioner of <a
                 href="https://www.gnu.org/philosophy/floss-and-foss.en.html" target="_blank">
