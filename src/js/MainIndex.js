@@ -102,6 +102,10 @@ class MainIndex extends React.Component {
                 There are some contributions to existing Free and Open Source projects as well.</p>
             </header>
             <p>
+						<a className="link-sky" target="_blank" href="https://github.com/webdevel/autocomplete-sql">Autocomplete SQL</a>
+						</p>
+            <p>This is an Autocomplete SQL provider for <a className="link-ash" target="_blank" href="https://atom.io">Atom</a> <a href="https://atom.io/packages/autocomplete-plus" target="_blank" className="link-ash">Autocomplete Plus</a>.</p>
+            <p>
 						<a className="link-sky" target="_blank" href="sudoku.html">Sudoku</a>
 						</p>
 						<p>I created a Sudoku puzzle solver game using HTML and JavaScript.
