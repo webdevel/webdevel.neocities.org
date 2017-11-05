@@ -1,0 +1,16 @@
+{
+  "include": [
+    "src/js/*"
+  ],
+  "exclude": [
+    "src/js/index.js",
+    "src/js/sudoku.js",
+    "src/js/svgDomPlayer.js"
+  ],
+  "require": [
+    "babel-register"
+  ],
+  "all": true,
+  "sourceMap": false,
+  "instrument": false
+}

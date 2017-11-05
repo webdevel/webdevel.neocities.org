@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-class MainIndex extends React.Component {
+export default class MainIndex extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
   render() {
     return (
@@ -102,6 +102,10 @@ class MainIndex extends React.Component {
                 There are some contributions to existing Free and Open Source projects as well.</p>
             </header>
             <p>
+              <a className="link-sky" target="_blank" href="https://github.com/webdevel/youtube-search-google-api">YouTube Search Google API</a>
+            </p>
+            <p>I authored a Node.js module to search for YouTube videos, channels, playlists and live events via Google API.</p>
+            <p>
 						<a className="link-sky" target="_blank" href="https://github.com/webdevel/autocomplete-sql">Autocomplete SQL</a>
 						</p>
             <p>This is an Autocomplete SQL provider for <a className="link-ash" target="_blank" href="https://atom.io">Atom</a> <a href="https://atom.io/packages/autocomplete-plus" target="_blank" className="link-ash">Autocomplete Plus</a>.</p>
@@ -172,4 +176,3 @@ class MainIndex extends React.Component {
     );
   }
 }
-export default MainIndex
