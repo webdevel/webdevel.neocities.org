@@ -1,0 +1,27 @@
+@import "index.scss";
+
+@media (min-width: 0em) {
+  div div.carousel {
+    width: 100% !important;
+  }
+}
+@media (min-width: 36em) {
+  div div.carousel {
+    width: 80% !important;
+  }
+}
+@media (min-width: 48em) {
+  div div.carousel {
+    width: 70% !important;
+  }
+}
+@media (min-width: 62em) {
+  div div.carousel {
+    width: 60% !important;
+  }
+}
+@media (min-width: 75em) {
+  div div.carousel {
+    width: 50% !important;
+  }
+}

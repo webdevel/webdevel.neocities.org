@@ -2,8 +2,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack');
 const path = require('path');
 const s = path.sep;
@@ -14,13 +14,59 @@ const nodeModDir = path.resolve(`${__dirname}${s}node_modules`);
 const reactDir = path.resolve(`${nodeModDir}${s}react${s}umd`);
 const reactDomDir = path.resolve(`${nodeModDir}${s}react-dom${s}umd`);
 const bootstrapDir = path.resolve(`${nodeModDir}${s}bootstrap${s}dist`);
+const carouselDir = path.resolve(`${nodeModDir}${s}react-responsive-carousel${s}lib`);
 const jqueryDir = path.resolve(`${nodeModDir}${s}jquery${s}dist`);
 const popperDir = path.resolve(`${nodeModDir}${s}popper.js${s}dist${s}umd`);
+const youtubeSearchDir = path.resolve(`${nodeModDir}${s}youtube-search-google-api${s}dist`);
 
-module.exports = [
-  {
+module.exports = env => {
+
+  // initialize for development environment
+  let webpackWatch = true
+  let sourceMap = 'inline-source-map'
+  let output = {
+    filename: '[name].js'
+  }
+  let css = {
+    filename: '[name].css',
+    enableSourceMap: true,
+    enableMinify: false
+  }
+  let htmlMinify = {
+    removeComments: true,
+    collapseWhitespace: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true
+  }
+
+  // initialize common plugins used in development and production
+  let plugins = []
+
+  if (env.production) {
+
+    css.enableMinify = true
+    css.enableSourceMap = false
+    webpackWatch = false
+    sourceMap = 'source-map'
+    output.filename = '[name].min.js'
+    plugins.push(
+      new UglifyJSPlugin({
+        test: /\.(js|jsx)$/,
+        include: /src\/js/,
+        cache: true,
+        parallel: true,
+        sourceMap: false,
+        uglifyOptions: {
+          ecma: 6,
+          warnings: false
+        }
+      })
+    )
+  }
+  return  {
     entry: {
       'index': path.resolve(jsSourceDir, 'index.js'),
+      'video': path.resolve(jsSourceDir, 'video.js'),
       vendor: [
         'react',
         'react-dom',
@@ -30,23 +76,25 @@ module.exports = [
       ]
     },
     output: {
-      filename: `js${s}[name].js`,
+      filename: `js${s}${output.filename}`,
       path: targetDir
     },
     resolve: {
+      extensions: ['.js', '.jsx'],
       alias: {
-        'react': path.resolve(`${reactDir}${s}react.production.min.js`),
-        'react-dom': path.resolve(`${reactDomDir}${s}react-dom.production.min.js`),
-        'jquery': path.resolve(`${jqueryDir}${s}jquery.min.js`),
-        'popper': path.resolve(`${popperDir}${s}popper.min.js`),
+        'youtube-search-google-api': path.resolve(youtubeSearchDir, 'youtube-search.min.js'),
+        'react': path.resolve(reactDir, 'react.production.min.js'),
+        'react-dom': path.resolve(reactDomDir, 'react-dom.production.min.js'),
+        'jquery': path.resolve(jqueryDir, 'jquery.min.js'),
+        'popper': path.resolve(popperDir, 'popper.min.js'),
         'bootstrap': path.resolve(`${bootstrapDir}${s}js${s}bootstrap.min.js`)
       }
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
-          exclude: /node_modules/,
+          test: /\.(js|jsx)$/,
+          include: /src\/js/,
           loader: 'babel-loader'
         },
         {
@@ -71,20 +119,20 @@ module.exports = [
                 {
                   loader: 'css-loader',
                   options: {
-                    sourceMap: false,
-                    minimize: true
+                    sourceMap: css.enableSourceMap,
+                    minimize: css.enableMinify
                   }
                 },
                 {
                   loader: 'postcss-loader',
                   options: {
-                    sourceMap: false
+                    sourceMap: css.enableSourceMap
                   }
                 },
                 {
                   loader: 'sass-loader',
                   options: {
-                    sourceMap: false
+                    sourceMap: css.enableSourceMap
                   }
                 }
               ]
@@ -132,6 +180,10 @@ module.exports = [
         {
           from: `${bootstrapDir}${s}css${s}bootstrap.min.css`,
           to: `css${s}bootstrap.min.css`
+        },
+        {
+          from: `${carouselDir}${s}styles${s}carousel.min.css`,
+          to: `css${s}carousel.min.css`
         },
         {
           from: `src${s}css${s}sudoku.css`,
@@ -182,47 +234,54 @@ module.exports = [
         'window.jQuery': 'jquery',
         Popper: 'popper'
       }),
-      new CleanWebpackPlugin(
-        [
-          `web${s}*.*`,
-          `web${s}css${s}*`,
-          `web${s}img${s}*`,
-          `web${s}js${s}*`,
-          `web${s}fonts${s}*`
-        ],
-        {
-          verbose: false,
-          dry: true
-        }),
       new HtmlWebpackPlugin({
         template: path.resolve(sourceDir, 'index.html'),
         filename: path.resolve(targetDir, 'index.html'),
         favicon: `src${s}img${s}favicon.ico`,
-        minify: {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true
-        },
-        hash: true
+        minify: htmlMinify,
+        hash: true,
+        chunks: [
+          'vendor',
+          'index'
+        ]
+      }),
+      new HtmlWebpackPlugin({
+        template: path.resolve(sourceDir, 'index.html'),
+        filename: path.resolve(targetDir, 'video.html'),
+        favicon: `src${s}img${s}favicon.ico`,
+        minify: htmlMinify,
+        hash: true,
+        chunks: [
+          'vendor',
+          'video'
+        ]
       }),
       new HtmlWebpackIncludeAssetsPlugin({
         assets: [
-          `css${s}bootstrap.min.css`,
+          `css${s}bootstrap.min.css`
         ],
         append: false,
-        hash: true
+        hash: true,
+        files: ['index.html', 'video.html']
+      }),
+      new HtmlWebpackIncludeAssetsPlugin({
+        assets: [
+          `css${s}carousel.min.css`
+        ],
+        append: false,
+        hash: true,
+        files: ['video.html']
       }),
       new ExtractTextPlugin({
-        filename: `css${s}[name].css`,
+        filename: `css${s}${css.filename}`,
         allChunks: true
       })
     ],
-    watch: false,
-    /*devtool: 'source-map',*/
+    watch: webpackWatch,
+    /*devtool: sourceMap,*/
     devServer: {
       hot: true,
       contentBase: 'web'
     }
   }
-];
+}

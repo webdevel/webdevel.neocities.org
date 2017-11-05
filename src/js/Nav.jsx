@@ -1,8 +1,17 @@
-import React from 'react';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Carousel } from 'react-responsive-carousel'
+import TechCarousel from './TechCarousel'
 
-class Nav extends React.Component {
+export default class Nav extends React.Component {
+
 	constructor(props) {
-		super(props);
+		super(props)
+		this.handleClick = this.handleClick.bind(this)
+	}
+	handleClick(e) {
+		e.preventDefault()
+		ReactDOM.render(<TechCarousel />, document.querySelector('main'))
 	}
 	render() {
 		return (
@@ -26,11 +35,13 @@ class Nav extends React.Component {
 					<li className="nav-item dropdown">
 						<a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Tidbits</a>
 						<div className="dropdown-menu dropdown-menu-left dropdown-menu-charcoal">
-							<a className="dropdown-item link-stone" href="#professional-section">Professional</a>
+							<a className="dropdown-item link-stone" href="index.html#professional-section">Professional</a>
 							<div className="dropdown-divider"></div>
-							<a className="dropdown-item link-stone" href="#personal-section">Personal</a>
+							<a className="dropdown-item link-stone" href="index.html#personal-section">Personal</a>
 							<div className="dropdown-divider"></div>
-							<a className="dropdown-item link-stone" href="#documentation-section">Documentation</a>
+							<a className="dropdown-item link-stone" href="index.html#documentation-section">Documentation</a>
+							<div className="dropdown-divider"></div>
+							<a className="dropdown-item link-stone" href="video.html#carousel-section">Video</a>
 						</div>
 					</li>
 				</ul>
@@ -39,4 +50,3 @@ class Nav extends React.Component {
 		);
 	}
 }
-export default Nav
