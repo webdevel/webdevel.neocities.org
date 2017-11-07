@@ -40,7 +40,73 @@ module.exports = env => {
   }
 
   // initialize common plugins used in development and production
-  let plugins = []
+  let plugins = [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
+    }),
+    new CopyWebpackPlugin([
+      {from: `${bootstrapDir}${s}css${s}bootstrap.min.css`, to: `css${s}bootstrap.min.css`},
+      {from: `${carouselDir}${s}styles${s}carousel.min.css`, to: `css${s}carousel.min.css`},
+      {from: `src${s}css${s}sudoku.css`, to: `css${s}`, flatten: true},
+      {from: `src${s}js${s}sudoku.js`, to: `js${s}`, flatten: true},
+      {from: `src${s}js${s}svgDomPlayer.js`, to: `js${s}`, flatten: true},
+      {from: `src${s}sudoku.html`, flatten: true},
+      {from: `src${s}svg-dom-player.html`, flatten: true},
+      {from: `src${s}*.pdf`, flatten: true},
+      {from: `src${s}img${s}*.cur`, to: `img${s}`, flatten: true},
+      {from: `src${s}img${s}*.png`, to: `img${s}`, flatten: true},
+      {from: `src${s}img${s}*.svg`, to: `img${s}`, flatten: true}
+    ]),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: 'popper'
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(sourceDir, 'index.html'),
+      filename: path.resolve(targetDir, 'index.html'),
+      favicon: `src${s}img${s}favicon.ico`,
+      minify: htmlMinify,
+      hash: true,
+      chunks: [
+        'vendor',
+        'index'
+      ]
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(sourceDir, 'index.html'),
+      filename: path.resolve(targetDir, 'video.html'),
+      favicon: `src${s}img${s}favicon.ico`,
+      minify: htmlMinify,
+      hash: true,
+      chunks: [
+        'vendor',
+        'video'
+      ]
+    }),
+    new HtmlWebpackIncludeAssetsPlugin({
+      assets: [
+        `css${s}bootstrap.min.css`
+      ],
+      append: false,
+      hash: true,
+      files: ['index.html', 'video.html']
+    }),
+    new HtmlWebpackIncludeAssetsPlugin({
+      assets: [
+        `css${s}carousel.min.css`
+      ],
+      append: false,
+      hash: true,
+      files: ['video.html']
+    }),
+    new ExtractTextPlugin({
+      filename: `css${s}${css.filename}`,
+      allChunks: true
+    })
+  ]
 
   if (env.production) {
 
@@ -61,6 +127,11 @@ module.exports = env => {
           warnings: false
         }
       })
+    )
+  } else { /* env.development */
+    plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin()
     )
   }
   return  {
@@ -151,7 +222,7 @@ module.exports = env => {
         }
       ]
     },
-    plugins: [
+    plugins: plugins,
       /*new BrowserSyncPlugin({
         host: 'localhost',
         port: 3000,
@@ -169,119 +240,11 @@ module.exports = env => {
           }
         }]
       }, { reload: false }),*/
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        /*filename: `js${s}vendors.min.js`,*/
-        minChunks: Infinity
-      }),
-      new CopyWebpackPlugin([
-        {
-          from: `${bootstrapDir}${s}css${s}bootstrap.min.css`,
-          to: `css${s}bootstrap.min.css`
-        },
-        {
-          from: `${carouselDir}${s}styles${s}carousel.min.css`,
-          to: `css${s}carousel.min.css`
-        },
-        {
-          from: `src${s}css${s}sudoku.css`,
-          to: `css${s}`,
-          flatten: true
-        },
-        {
-          from: `src${s}js${s}sudoku.js`,
-          to: `js${s}`,
-          flatten: true
-        },
-        {
-          from: `src${s}js${s}svgDomPlayer.js`,
-          to: `js${s}`,
-          flatten: true
-        },
-        {
-          from: `src${s}sudoku.html`,
-          flatten: true
-        },
-        {
-          from: `src${s}svg-dom-player.html`,
-          flatten: true
-        },
-        {
-          from: `src${s}*.pdf`,
-          flatten: true
-        },
-        {
-          from: `src${s}img${s}*.cur`,
-          to: `img${s}`,
-          flatten: true
-        },
-        {
-          from: `src${s}img${s}*.png`,
-          to: `img${s}`,
-          flatten: true
-        },
-        {
-          from: `src${s}img${s}*.svg`,
-          to: `img${s}`,
-          flatten: true
-        }
-      ]),
-      new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery',
-        Popper: 'popper'
-      }),
-      new HtmlWebpackPlugin({
-        template: path.resolve(sourceDir, 'index.html'),
-        filename: path.resolve(targetDir, 'index.html'),
-        favicon: `src${s}img${s}favicon.ico`,
-        minify: htmlMinify,
-        hash: true,
-        chunks: [
-          'vendor',
-          'index'
-        ]
-      }),
-      new HtmlWebpackPlugin({
-        template: path.resolve(sourceDir, 'index.html'),
-        filename: path.resolve(targetDir, 'video.html'),
-        favicon: `src${s}img${s}favicon.ico`,
-        minify: htmlMinify,
-        hash: true,
-        chunks: [
-          'vendor',
-          'video'
-        ]
-      }),
-      new HtmlWebpackIncludeAssetsPlugin({
-        assets: [
-          `css${s}bootstrap.min.css`
-        ],
-        append: false,
-        hash: true,
-        files: ['index.html', 'video.html']
-      }),
-      new HtmlWebpackIncludeAssetsPlugin({
-        assets: [
-          `css${s}carousel.min.css`
-        ],
-        append: false,
-        hash: true,
-        files: ['video.html']
-      }),
-      new ExtractTextPlugin({
-        filename: `css${s}${css.filename}`,
-        allChunks: true
-      })
-    ],
     watch: webpackWatch,
     /*devtool: sourceMap,*/
-    devServer: {
+    /*devServer: {
       hot: true,
       contentBase: 'web'
-    }
+    }*/
   }
 }
